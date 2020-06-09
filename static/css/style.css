@@ -527,5 +527,10 @@ box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5) !important;
 
 .title {
   color: #2F2FA2;
+  margin-top:25px;
+}
+
+.emailfooter {
+    text-align: right;
 }
 

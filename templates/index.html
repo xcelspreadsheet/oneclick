@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h6 class="explanation">Help your audience automatically open pre-filled emails from their phone or computer with easy one-click links. To get started, fill in the fields below and click "Create One-Click Links." No data is stored on or collected by this website; in fact, all of it is embedded in the link itself! (That's why they're so long.) See the <a href="{{ url_for('displayAbout') }}">About</a> page for more info. This tool is open-source. #defundthepolice #blacklivesmatter</h6>
+<h6 class="explanation">Help your audience automatically open pre-filled email scripts from their phone or computer with easy one-click links. To get started, fill in the fields below and click "Create One-Click Links." No data is stored on or collected by this website; in fact, all of it is embedded in the link itself! (That's why they're so long.) See the <a href="{{ url_for('displayAbout') }}">About</a> page for more info. This tool is open-source. #defundthepolice #blacklivesmatter</h6>
 
 <hr>
 
 <div class="email">
 <div class="form">
-<form action="{{ url_for('home') }}" method="post" >
+<form action="{{ url_for('renderCreated') }}" method="post" >
 
   <label for="recipients">RECIPIENTS</label>
   <h6>Separated by spaces, commas, or new lines.</h6>

@@ -17,10 +17,11 @@
   <div class="content" role="main">
     {% block content %}{% endblock %}
     {% include 'emailcalltoaction.html' %}
-  </div><ul>
-        <li><a href="{{ url_for('displayAbout') }}">What is this website?</a></li>
-        <li><a href="{{ url_for('home') }}">Create a campaign.</a></li>
-</ul>
+  </div>
+  <div class=emailfooter>
+        <p><a href="{{ url_for('displayAbout') }}">What is this website?</a></p>
+        <p><a href="{{ url_for('home') }}">Create a campaign.</a></p>
+    </div>
 </div><!-- end container -->
 <br>
 <br>

@@ -6,6 +6,7 @@ from flask import redirect
 from flask import render_template, redirect, url_for
 from flask import request
 import urllib
+import zlib
 
 app = Flask(__name__)
 
@@ -21,13 +22,40 @@ def home():
         cc = " ".join(request.form['cc'].replace(',', ' ').split()).replace(" ", ',')
         bcc = " ".join(request.form['bcc'].replace(',', ' ').split()).replace(" ", ',')
         subject = request.form['subject'].strip().replace('\n', ' ')
-        message = urllib.parse.quote(request.form['message'])
-        purpose = urllib.parse.quote(request.form['purpose'])
-        return redirect(url_for('renderSuccess', purpose=purpose, baseurl=request.base_url, recipients=recipients, cc=cc, bcc=bcc, subject=subject, message=message ))
-
-
+        message = urllib.parse.quote(request.form['message'].strip())
+        purpose = urllib.parse.quote(request.form['purpose'].strip())
+        return url_for('renderSuccess', message=message, purpose=purpose, baseurl=request.base_url, recipients=recipients, cc=cc, bcc=bcc, subject=subject)
+        #return redirect(url_for('renderSuccess', message=message, purpose=purpose, baseurl=request.base_url, recipients=recipients, cc=cc, bcc=bcc, subject=subject ))
     if request.method == "GET":
         return render_template('index.html')
+
+@app.route("/created", methods=["GET","POST"])
+def renderCreated():
+    if request.method == "POST":
+        createdRecipients = " ".join(request.form['recipients'].replace(',', ' ').split()).replace(" ", ',')
+        createdCC = " ".join(request.form['cc'].replace(',', ' ').split()).replace(" ", ',')
+        createdBCC = " ".join(request.form['bcc'].replace(',', ' ').split()).replace(" ", ',')
+        createdSubject = request.form['subject'].strip().replace('\n', ' ')
+        createdMessage = urllib.parse.quote(request.form['message'].strip())
+        createdPurpose = urllib.parse.quote(request.form['purpose'].strip())
+
+        recipients = createdRecipients
+        displayrecipients = createdRecipients.replace(',', ', ')
+        cc = createdCC
+        displaycc = createdCC.replace(',', ', ')
+        bcc = createdBCC
+        displaybcc = createdBCC.replace(',', ', ')
+        subject = createdSubject
+        message = createdMessage
+        displaymessage = urllib.parse.unquote_plus(createdMessage).replace('\n', '<br>')
+        displaysubject = urllib.parse.unquote_plus(createdSubject)
+        purpose = urllib.parse.unquote_plus(createdPurpose).replace('\n', '<br>')
+        baseurl = request.base_url.replace('/created','')
+
+        url = baseurl + url_for('renderEmail', purpose=purpose, recipients=recipients, cc=cc, bcc=bcc, subject=subject, message=message ).replace('/oneclick','')
+        openurl = baseurl + url_for('openEmail', purpose=purpose, recipients=recipients, cc=cc, bcc=bcc, subject=subject, message=message ).replace('/oneclick','')
+
+        return render_template('success.html', openurl=openurl, url=url, purpose=purpose, displayrecipients=displayrecipients, displaycc=displaycc, displaybcc=displaybcc, displaysubject=displaysubject, displaymessage=displaymessage, recipients=recipients, cc=cc, bcc=bcc, subject=subject, message=message)
 
 @app.route("/success", methods=["GET"])
 def renderSuccess():
@@ -39,8 +67,8 @@ def renderSuccess():
     displaybcc = request.args.get('bcc', default = "").replace(',', ', ')
     subject = request.args.get('subject', default = "")
     message = request.args.get('message', default = "")
-    displaysubject = urllib.parse.unquote_plus(request.args.get('subject', default = ""))
     displaymessage = urllib.parse.unquote_plus(request.args.get('message', default = "")).replace('\n', '<br>')
+    displaysubject = urllib.parse.unquote_plus(request.args.get('subject', default = ""))
     purpose = urllib.parse.unquote_plus(request.args.get('purpose', default = "")).replace('\n', '<br>')
     url = request.args.get('baseurl', default = "").rstrip('/') + url_for('renderEmail', purpose=purpose, recipients=recipients, cc=cc, bcc=bcc, subject=subject, message=message ).replace('/oneclick','')
     openurl = request.args.get('baseurl', default = "").rstrip('/') + url_for('openEmail', purpose=purpose, recipients=recipients, cc=cc, bcc=bcc, subject=subject, message=message ).replace('/oneclick','')
@@ -90,3 +118,13 @@ def openEmail():
 def displayAbout():
     print("about")
     return render_template('about.html')
+
+@app.errorhandler(404)
+def pageNotFound(e):
+    # your processing here
+    return redirect(url_for('home'))
+
+@app.errorhandler(504)
+def tooLong(e):
+    # your processing here
+    return redirect(url_for('home'))
