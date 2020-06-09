@@ -1,0 +1,31 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>{% block page_title %}One-Click Email Campaign{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/add.css') }}">
+
+  {% block css %}{% endblock %}
+
+</head>
+
+<body class="box">
+
+<div class="{% block content_class %}container{% endblock content_class %}">
+
+  <div class="content" role="main">
+    {% block content %}{% endblock %}
+    {% include 'emailcalltoaction.html' %}
+  </div><ul>
+        <li><a href="{{ url_for('displayAbout') }}">What is this website?</a></li>
+        <li><a href="{{ url_for('home') }}">Create a campaign.</a></li>
+</ul>
+</div><!-- end container -->
+<br>
+<br>
+<br>
+<br>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h6 class="explanation" style="text-align: center;">Email links successfully created!</h6>
+<hr>
+<!-- <h5>Link to Preview of Email with Optional One-Click Link</h5> -->
+<button class="pinkbutton" onclick="copyElement('previewLink')">Copy Link to Email Preview</button>
+<a class="button" href="{{url}}">Go to Email Preview</a>
+<input  style="position: absolute; left: -1000px;" type="text" id="previewLink" value="{{url}}">
+<h6>A preview of the email with an optional "Send This Email" button. Clicking "Send This Email" will automatically open a pre-filled draft of the email in the user's default email client. <b>Works well in most places.</b></h6>
+<br>
+<!-- <h5>One-Click Link to Automatically Pre-fill Email</h5> -->
+<button class="pinkbutton" onclick="copyElement('directLink')">Copy Link to Pre-filled Email</button>
+<a class="button" href="{{openurl}}">Go to Pre-filled Email</a>
+<input style="position: absolute; left: -1000px;" type="text" id="directLink" value="{{openurl}}">
+<h6>Automatically opens a pre-filled draft of the email in the user's default email client. <b>Works well with Instagram and services like Linktree but may malfunction elsewhere.</b></h6>
+<hr>
+
+
+
+
+<div class="preview">
+{% include 'emailbody.html' %}
+</div>
+
+{% endblock %}

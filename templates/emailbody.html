@@ -1,0 +1,36 @@
+
+{% block content %}
+<br>
+<br>
+<div class="email">
+
+
+<label>TO</label>
+<p>{{displayrecipients}}</p>
+{% if cc %}
+<label>CC</label>
+<p>{{displaycc}}</p>
+{% endif %}
+{% if bcc %}
+<label>BCC</label>
+<p>{{displaybcc}}</p>
+{% endif %}
+<hr>
+<label>SUBJECT</label>
+<p>{{displaysubject}}</p>
+<label>MESSAGE</label>
+<p>{{displaymessage|safe}}</p>
+</div>
+<hr>
+
+{% if purpose %}
+<div class="purpose">
+    <label>ABOUT THIS CAMPAIGN</label>
+    <p>{{purpose|safe}}</p>
+</div>
+<hr>
+{% endif %}
+
+<script></script>
+
+{% endblock %}

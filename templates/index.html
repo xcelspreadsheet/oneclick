@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h6 class="explanation">Help your audience automatically open pre-filled emails from their phone or computer with easy one-click links. To get started, fill in the fields below and click "Create One-Click Links." No data is stored on or collected by this website; in fact, all of it is embedded in the link itself! (That's why they're so long.) See the <a href="{{ url_for('displayAbout') }}">About</a> page for more info. This tool is open-source. #defundthepolice #blacklivesmatter</h6>
+
+<hr>
+
+<div class="email">
+<div class="form">
+<form action="{{ url_for('home') }}" method="post" >
+
+  <label for="recipients">RECIPIENTS</label>
+  <h6>Separated by spaces, commas, or new lines.</h6>
+  <textarea id="recipients" name="recipients"></textarea>
+  <label for="cc">CC (optional)</label>
+  <h6>Separated by spaces, commas, or new lines.</h6>
+  <textarea id="cc" name="cc"></textarea>
+  <label for="bcc">BCC (optional)</label>
+  <h6>Separated by spaces, commas, or new lines.</h6>
+  <textarea id="bcc" name="bcc"></textarea>
+  <label for="subject">SUBJECT</label>
+  <textarea id="subject" name="subject"></textarea>
+  <label for="subject">MESSAGE</label>
+  <textarea class="message" id="message" name="message"></textarea>
+  <label for="purpose">WHY SEND THIS EMAIL? (optional)</label>
+  <h6>A brief explanation of the intent of the email. This will not appear in the email itself.</h6>
+  <textarea id="purpose" name="purpose"></textarea>
+
+
+  <input type="submit" style="-webkit-appearance: none;display: inline-block; height: 38px; padding: 0 30px; text-align: center; font-size: 11px; font-weight: 600; line-height: 38px; letter-spacing: .1rem; text-transform: uppercase; text-decoration: none; white-space: nowrap; border-radius: 4px; border: 1px solid #bbb; cursor: pointer; box-sizing: border-box;background-color: #2F2FA2; border-color:  #2F2FA2; position: fixed; bottom: 25px; left: 10vw; width: 80vw; transition: all 0.3s ease 0s; transform: translateY(-5px); box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);" class="button-primary sendemailbutton" id="sendemailbutton" value="Create One-Click Links">
+
+</form>
+</div>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}
