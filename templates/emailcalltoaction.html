@@ -2,9 +2,9 @@
 
 {% block content %}
 
-<a class="button button-primary sendemailbutton" style="background-color: #2F2FA2; border-color:  #2F2FA2; position: fixed; bottom: 25px; left: 10vw; width: 80vw; transition: all 0.3s ease 0s; transform: translateY(-5px); box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);" id="sendemailbutton" href="mailto:{{recipients}}?cc={{cc}}&bcc={{bcc}}&subject={{subject}}&body={{message}}">Send This Email</a>
+<a class="button button-primary sendemailbutton" style="background-color: #2F2FA2; border-color:  #2F2FA2; position: fixed; bottom: 25px; left: 10vw; width: 80vw; transition: all 0.3s ease 0s; transform: translateY(-5px); box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);" id="sendemailbutton" href="mailto:{{recipients}}?cc={{cc}}&bcc={{bcc}}&subject={{subject}}&body={{message}}">Open Draft of this Email</a>
 <label>HOW TO SEND THIS EMAIL</label>
-<div class="">Click "Send This Email" to automatically open a draft of the email above in your default email client. <b>Don't forget to fill in any placeholder information.</b> If your client doesn't open, copy and paste the info into your preferred email client, like Gmail.</div></a>
+<div class="">Click "Open Draft of this Email" to automatically open a draft of the email above in your default email client. <b>Don't forget to fill in any placeholder information.</b> If your client doesn't open, copy and paste the info into your preferred email client, like Gmail.</div></a>
 
 <hr>
 {% endblock %}

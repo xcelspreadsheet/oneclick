@@ -5,7 +5,7 @@
 .container {
   position: relative;
   width: 100%;
-  max-width: 960px;
+  max-width: 700px;
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box; }
@@ -527,10 +527,85 @@ box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5) !important;
 
 .title {
   color: #2F2FA2;
-  margin-top:25px;
+  margin-top:30px;
+    margin-bottom:30px;
+
+display: flex;
+    float: inherit;
+    vertical-align: middle;
+    float: inherit;
+    padding-left:15px;
+    line-height: 1;
 }
 
 .emailfooter {
     text-align: right;
+}
+
+.symbol {
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    padding: 10px;
+
+    background: #2F2FA2;
+    color: white;
+    text-align: center;
+    display: flow-root;
+        float: left;
+    font: 40px Arial, sans-serif;
+}
+
+@media (max-width: 320px) {
+  .symbol {
+    display:none;
+}
+}
+
+ul.breadcrumb {
+  text-align: left;
+  list-style: none;
+font-size: 6px;
+font-weight: 600;
+line-height: 38px;
+letter-spacing: .1rem;
+text-transform: uppercase;
+white-space: nowrap;
+margin-left: 83px;
+margin-top: -25px;
+margin-bottom: 5px;
+color:#2F2FA2;
+
+}
+
+@media (max-width: 320px) {
+ul.breadcrumb {
+    text-align: left;
+    margin-left:15px;
+}
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "    ";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color:#2F2FA2;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  text-decoration: underline;
 }
 

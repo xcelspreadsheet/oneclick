@@ -4,8 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>{% block page_title %}One-Click Email Campaign{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/add.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/add2.css') }}">
+
 
 
   {% block css %}{% endblock %}
@@ -15,7 +14,12 @@
 <body class="box">
 <nav class="nav-menu">
       <div class="container">
-        <a href="{{ url_for('home') }}" style="  text-decoration: none;"><h1 class="title gradient-multiline"><b>ONE-CLICK EMAIL CAMPAIGN</b></h1></a>
+
+        <a href="{{ url_for('home') }}" style="  text-decoration: none;"><div class="symbol">✉&#xFE0E;</div><h1 class="title"><b>ONE-CLICK EMAIL CAMPAIGN</b></h1></a>
+        <ul class="breadcrumb">
+  <li><a href="{{ url_for('home') }}">★&#xFE0E; Home</a></li>
+  <li><a href="{{ url_for('displayAbout') }}">☎&#xFE0E; About</a></li>
+</ul>
 </nav>
 
 <div class="{% block content_class %}container{% endblock content_class %}">

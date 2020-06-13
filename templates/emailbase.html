@@ -4,7 +4,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>{% block page_title %}One-Click Email Campaign{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/add.css') }}">
 
   {% block css %}{% endblock %}
 
@@ -19,8 +18,8 @@
     {% include 'emailcalltoaction.html' %}
   </div>
   <div class=emailfooter>
-        <p><a href="{{ url_for('displayAbout') }}">What is this website?</a></p>
-        <p><a href="{{ url_for('home') }}">Create a campaign.</a></p>
+        <p><a href="{{ url_for('displayAbout') }}">WHAT IS THIS WEBSITE?</a></p>
+        <p><a href="{{ url_for('home') }}">CREATE A CAMPAIGN</a></p>
     </div>
 </div><!-- end container -->
 <br>
