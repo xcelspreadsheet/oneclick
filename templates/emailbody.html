@@ -26,7 +26,7 @@
 {% if purpose %}
 <div class="purpose">
     <label>ABOUT THIS EMAIL SCRIPT</label>
-    <p>{{purpose|safe}}</p>
+    <p>{{purpose|safe|urlize(40, true, target="_blank")}}</p>
 </div>
 <hr>
 {% endif %}

@@ -6,12 +6,17 @@ from flask import redirect
 from flask import render_template, redirect, url_for
 from flask import request
 import urllib
-import zlib
+import contextlib
 
 app = Flask(__name__)
 
 def utf8len(s):
     return len(s.encode('utf-8'))
+
+def makeTiny(url):
+    request_url = ('http://tinyurl.com/api-create.php?' + urllib.parse.urlencode({'url':url}))
+    with contextlib.closing(urllib.request.urlopen(request_url)) as response:
+        return response.read().decode('utf-8 ')
 
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -41,8 +46,10 @@ def renderCreated():
         purpose = urllib.parse.unquote_plus(createdPurpose).replace('\n', '<br>')
         baseurl = request.base_url.replace('/created','')
 
-        url = baseurl + url_for('renderEmail', purpose=purpose, recipients=recipients, cc=cc, bcc=bcc, subject=subject, message=message ).replace('/oneclick','')
-        openurl = baseurl + url_for('openEmail', purpose=purpose, recipients=recipients, cc=cc, bcc=bcc, subject=subject, message=message ).replace('/oneclick','')
+        longURL = baseurl + url_for('renderEmail', purpose=purpose, recipients=recipients, cc=cc, bcc=bcc, subject=subject, message=message ).replace('/oneclick','')
+        url = makeTiny(longURL)
+        longOpenURL = baseurl + url_for('openEmail', purpose=purpose, recipients=recipients, cc=cc, bcc=bcc, subject=subject, message=message ).replace('/oneclick','')
+        openurl = makeTiny(longOpenURL)
 
         if utf8len(openurl) > 4950:
             return render_template('error.html', error="Unfortunately, your email is too long for this service. Try delivering your message via other easy web publishing services like Google Docs.")
@@ -101,6 +108,14 @@ def openEmail():
     message = request.args.get('message', default = "")
 
     return redirect('mailto:'+recipients+'?cc='+cc+'&bcc='+bcc+'&subject='+subject+'&body='+message)
+
+@app.route("/hbdjosephine", methods=["GET"])
+def hbd():
+     return render_template('bday.html')
+
+@app.route("/hbdgaby", methods=["GET"])
+def hbdgaby():
+     return render_template('gaby.html')
 
 @app.route("/about", methods=["GET"])
 def displayAbout():
